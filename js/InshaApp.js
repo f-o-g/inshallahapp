@@ -11,6 +11,8 @@ import {connect} from 'react-redux'
 import View from 'View'
 import Text from 'Text'
 import StatusBar from 'StatusBar'
+import LoginScreen from './login/LoginScreen'
+import InshaNavigator from 'InshaNavigator'
 
 class InshaApp extends Component {
  componentDidMount() {
@@ -26,6 +28,10 @@ class InshaApp extends Component {
  }
 
  render() {
+   if (!this.props.isLoggedIn) {
+     return <LoginScreen />
+   }
+
    return (
      <View style={styles.container}>
        <StatusBar
@@ -33,7 +39,7 @@ class InshaApp extends Component {
          backgroundColor="rgba(0, 0, 0, 0.2)"
          barStyle="light-content"
         />
-       <Text>Inshallah App</Text>
+       <InshaNavigator />
      </View>
    );
  }
@@ -45,4 +51,6 @@ const styles = StyleSheet.create({
    },
 })
 
-export default connect()(InshaApp)
+const select = (state) => ({isLoggedIn: state.user.isLoggedIn})
+
+export default connect(select)(InshaApp)
