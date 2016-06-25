@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start": "babel-node ./server/server.js",
     "lint": "eslint ."
   },
   "dependencies": {
@@ -13,7 +13,13 @@
     "redux": "^3.5.2",
     "redux-logger": "^2.6.1",
     "redux-persist": "^3.2.2",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "express": "~4.13.4",
+    "express-graphql": "~0.4.13",
+    "graphql-relay": "~0.3.6",
+    "parse": "~1.8.2",
+    "parse-dashboard": "~1.0.8",
+    "parse-server": "~2.2.6"
   },
   "devDependencies": {
     "babel-eslint": "^6.1.0",
