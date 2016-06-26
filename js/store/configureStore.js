@@ -4,11 +4,12 @@
 
 'use strict'
 
-import {applyMiddleware, createStore} from 'redux'
+import {applyMiddleware, createStore, compose} from 'redux'
 import thunk from 'redux-thunk'
 import promise from './promise'
 import array from './array'
 import analytics from './analytics'
+import devTools from 'remote-redux-devtools'
 import reducers from '../reducers'
 import createLogger from 'redux-logger'
 import {persistStore, autoRehydrate} from 'redux-persist'
@@ -22,8 +23,11 @@ const logger = createLogger({
   duration: true,
 })
 
-const createInshaStore = applyMiddleware(
-  thunk, promise, array, analytics, logger
+const createInshaStore = compose(
+  applyMiddleware(
+    thunk, promise, array, analytics, logger,
+  ),
+  devTools()
 )(createStore)
 
 function configureStore(onComplete: ?() => void) {

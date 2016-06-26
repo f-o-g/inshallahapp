@@ -1,17 +1,16 @@
 /*
-* @providesModule F8Text
+* @providesModule InshaText
 * @flow
 */
 
 'use strict'
-
-import React from 'react'
+import React from 'React'
+import Text from 'Text'
 import StyleSheet from 'StyleSheet'
 import Dimensions from 'Dimensions'
-import Text from 'Text'
 import InshaColors from 'InshaColors'
 
-export function Text({style, ...props}: Object): ReactElement {
+export function InshaText({style, ...props}: Object): ReactElement {
  return <Text style={[styles.font, style]} {...props} />
 }
 

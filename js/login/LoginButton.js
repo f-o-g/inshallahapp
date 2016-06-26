@@ -3,7 +3,7 @@
  */
 'use strict'
 
-import React, {Component} from 'react'
+import React, {Component} from 'React'
 import StyleSheet from 'StyleSheet'
 import InshaButton from 'InshaButton'
 import { logInWithFacebook } from '../actions'
@@ -15,6 +15,7 @@ class LoginButton extends Component {
     source?: string; // For Analytics
     dispatch: (action: any) => Promise;
     onLoggedIn: ?() => void;
+    socialSignIn?: string;
   }
   state: {
     isLoading: boolean;
@@ -31,12 +32,17 @@ class LoginButton extends Component {
   }
 
   async logIn() {
-    const {dispatch, onLoggedIn} = this.props
+    const {dispatch, onLoggedIn, socialSignIn} = this.props
 
     this.setState({isLoading: true})
+
+    let logInAction = socialSignIn === 'facebook'
+      ? logInWithFacebook
+      : () => {}// normal log in
+
     try {
       await Promise.race([
-        dispatch(logInWithFacebook(this.props.source)),
+        dispatch(logInAction(this.props.source)),
         timeout(15000),
       ])
     } catch (e) {
@@ -58,16 +64,19 @@ class LoginButton extends Component {
       return (
         <InshaButton
           style={[styles.button, this.props.style]}
+          type={!socialSignIn && 'bordered'}
           caption="Please wait..."
         />
       );
     }
 
+    const socialSignIn = this.props.socialSignIn
     return (
       <InshaButton
         style={[styles.button, this.props.style]}
-        icon={require('../login/img/f-logo.png')}
-        caption="Log in with Facebook"
+        icon={socialSignIn === 'fb' && require('../login/img/f-logo.png')}
+        type={!socialSignIn && 'bordered'}
+        caption={socialSignIn === 'fb' ? 'Sign in with Facebook' : 'Sign in'}
         onPress={() => this.logIn()}
       />
     );

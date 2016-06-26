@@ -1,5 +1,5 @@
 /*
- * @providesModule F8Colors
+ * @providesModule InshaColors
  * @flow
  */
 
@@ -34,6 +34,7 @@ export default {
   lightText: '#7F91A7',
   cellBorder: '#EEEEEE',
   darkBackground: '#183E63',
+  limeA100: '#F4FF81',
   colorForLocation,
   colorForTopic,
 }

@@ -5,12 +5,11 @@
 
 'use strict'
 
-import InshaColors from 'InshaColors'
 import Image from 'Image'
 import LinearGradient from 'react-native-linear-gradient'
 import React, {Component} from 'React'
 import StyleSheet from 'StyleSheet'
-import { Text } from 'InshaText'
+import { InshaText } from 'InshaText'
 import TouchableOpacity from 'TouchableOpacity'
 import View from 'View'
 
@@ -29,17 +28,24 @@ class InshaButton extends Component {
    if (this.props.icon) {
      icon = <Image source={this.props.icon} style={styles.icon} />
    }
+
+   const type = this.props.type
    let content
-   if (this.props.type === 'primary' || this.props.type === undefined) {
+   if (type === 'primary' || type === 'secondary' || !this.props.type) {
+     const colors =
+       type === 'primary' ? ['#6A6AD5', '#6F86D9'] :
+       type === 'secondary' ? ['', ''] :
+       ['#6A6AD5', '#6F86D9']
+
      content = (
        <LinearGradient
          start={[0.5, 1]} end={[1, 1]}
-         colors={['#6A6AD5', '#6F86D9']}
+         colors={colors}
          style={[styles.button, styles.primaryButton]}>
          {icon}
-         <Text style={[styles.caption, styles.primaryCaption]}>
+         <InshaText style={[styles.caption, styles.primaryCaption]}>
            {caption}
-         </Text>
+         </InshaText>
        </LinearGradient>
      )
    } else {
@@ -47,9 +53,9 @@ class InshaButton extends Component {
      content = (
        <View style={[styles.button, border]}>
          {icon}
-         <Text style={[styles.caption, styles.secondaryCaption]}>
+         <InshaText style={[styles.caption]}>
            {caption}
-         </Text>
+         </InshaText>
        </View>
      )
    }
@@ -68,40 +74,40 @@ class InshaButton extends Component {
 const HEIGHT = 50;
 
 const styles = StyleSheet.create({
- container: {
-   height: HEIGHT,
-   // borderRadius: HEIGHT / 2,
-   // borderWidth: 1 / PixelRatio.get(),
- },
- button: {
-   flex: 1,
-   flexDirection: 'row',
-   alignItems: 'center',
-   justifyContent: 'center',
-   paddingHorizontal: 40,
- },
- border: {
-   borderWidth: 1,
-   borderColor: InshaColors.lightText,
-   borderRadius: HEIGHT / 2,
- },
- primaryButton: {
-   borderRadius: HEIGHT / 2,
-   backgroundColor: 'transparent',
- },
- icon: {
-   marginRight: 12,
- },
- caption: {
-   letterSpacing: 1,
-   fontSize: 12,
- },
- primaryCaption: {
-   color: 'white',
- },
- secondaryCaption: {
-   color: InshaColors.lightText,
- }
+  container: {
+    height: HEIGHT,
+     // borderRadius: HEIGHT / 2,
+     // borderWidth: 1 / PixelRatio.get(),
+   },
+   button: {
+     flex: 1,
+     flexDirection: 'row',
+     alignItems: 'center',
+     justifyContent: 'center',
+     paddingHorizontal: 40,
+   },
+   border: {
+     borderWidth: 1,
+     borderColor: 'white',
+     borderRadius: HEIGHT / 2,
+    //  backgroundColor: 'white',
+    //  opacity: 0.2
+   },
+   primaryButton: {
+     borderRadius: HEIGHT / 2,
+     backgroundColor: 'transparent',
+   },
+   icon: {
+     marginRight: 12,
+   },
+   caption: {
+     letterSpacing: 1,
+     fontSize: 12,
+     color: 'white',
+   },
+   primaryCaption: {
+     color: 'white',
+   },
 })
 
 export default InshaButton
