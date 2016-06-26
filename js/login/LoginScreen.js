@@ -125,7 +125,7 @@ class LoginScreen extends Component {
       Links = (
         <View style={styles.links}>
           <InshaTextLink
-            text="Back to sign in"
+            text="Back"
             onPress={() => this.onLinkPressed('back')}
             textStyle={styles.forgotPasswordText}
           />
@@ -180,8 +180,8 @@ const styles = StyleSheet.create({
   },
   logo: {
     // Remove when get proper image size
-    width: 130,
-    height: 130
+    width: 110,
+    height: 110
   },
   h1: {
     marginTop: 30,
