@@ -34,6 +34,8 @@
     "parse-server": "~2.2.6",
     "react": "15.1.0",
     "react-native": "0.28.0",
+    "react-native-linear-gradient": "^1.5.12",
+    "react-native-vector-icons": "^2.0.3",
     "react-redux": "^4.4.5",
     "react-relay": "^0.9.1",
     "redux": "^3.5.2",
@@ -44,6 +46,7 @@
   "devDependencies": {
     "babel-eslint": "^6.1.0",
     "eslint": "^2.13.1",
-    "eslint-plugin-react": "^5.2.2"
+    "eslint-plugin-react": "^5.2.2",
+    "remote-redux-devtools": "^0.3.3"
   }
 }
