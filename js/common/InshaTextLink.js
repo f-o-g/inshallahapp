@@ -14,12 +14,11 @@ function InshaTextLink({
   text,
   style,
   textStyle,
-  onPress,
   toucheableProps,
   ...props
 }: Object): ReactElement {
   return (
-    <TouchableOpacity style={style} activeOpacity={0.7} onPress={() => {}} {...props}>
+    <TouchableOpacity style={style} activeOpacity={0.7} {...props}>
       <View>
         <InshaText style={[styles.textStyle, textStyle]}>{text}</InshaText>
       </View>

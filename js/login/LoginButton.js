@@ -8,6 +8,7 @@ import StyleSheet from 'StyleSheet'
 import InshaButton from 'InshaButton'
 import { logInWithFacebook } from '../actions'
 import {connect} from 'react-redux'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 class LoginButton extends Component {
   props: {
@@ -22,7 +23,7 @@ class LoginButton extends Component {
   };
   _isMounted: boolean;
 
-  state = { isLoading: false }
+  state = {isLoading: false}
 
   componentDidMount() {
     this._isMounted = true
@@ -32,17 +33,19 @@ class LoginButton extends Component {
   }
 
   async logIn() {
-    const {dispatch, onLoggedIn, socialSignIn} = this.props
+    const {dispatch, onLoggedIn, socialSignIn, form} = this.props
 
     this.setState({isLoading: true})
 
-    let logInAction = socialSignIn === 'facebook'
+    let action = socialSignIn === 'facebook'
       ? logInWithFacebook
-      : () => {}// normal log in
+      : form === 'signIn'
+        ? () => {}
+        : () => {}
 
     try {
       await Promise.race([
-        dispatch(logInAction(this.props.source)),
+        dispatch(action(this.props.source)),
         timeout(15000),
       ])
     } catch (e) {
@@ -70,13 +73,25 @@ class LoginButton extends Component {
       );
     }
 
-    const socialSignIn = this.props.socialSignIn
+    const {socialSignIn, type} = this.props
+    let icon
+    if (type === 'secondary') {
+      icon = <Icon style={styles.icon} name="mail-outline" size={22} color="#ffffff" />
+    } else if (socialSignIn === 'fb') {
+      icon = require('../login/img/f-logo.png')
+    }
+
     return (
       <InshaButton
         style={[styles.button, this.props.style]}
-        icon={socialSignIn === 'fb' && require('../login/img/f-logo.png')}
-        type={!socialSignIn && 'bordered'}
-        caption={socialSignIn === 'fb' ? 'Sign in with Facebook' : 'Sign in'}
+        icon={icon}
+        type={type}
+        caption={socialSignIn === 'fb'
+          ? 'Sign in with Facebook'
+          : type === 'bordered'
+            ? this.props.caption
+            : 'Sign in with Email'
+        }
         onPress={() => this.logIn()}
       />
     );
@@ -94,6 +109,14 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     width: 270,
   },
+  icon: {
+    marginRight: 0,
+    position: 'relative',
+    right: 20
+  },
+  signInMail: {
+
+  }
 })
 
 export default connect()(LoginButton)

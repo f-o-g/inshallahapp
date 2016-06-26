@@ -14,11 +14,22 @@ import InshaTextLink from 'InshaTextLink'
 // import StatusBarIOS from 'StatusBarIOS'
 import {connect} from 'react-redux'
 import LoginButton from './LoginButton'
-import InshaTextField from 'InshaTextField'
+import InshaButton from 'InshaButton'
+import SignForm from './SignForm'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 class LoginScreen extends Component {
+  constructor(props) {
+    super(props)
+
+    this.onLinkPressed = this.onLinkPressed.bind(this)
+    this.onButtonPressed = this.onButtonPressed.bind(this)
+  }
+
   state = {
     anim: new Animated.Value(0),
+    showForm: false,
+    form: undefined
   }
   componentDidMount() {
     // StatusBarIOS && StatusBarIOS.setStyle('default')
@@ -43,7 +54,89 @@ class LoginScreen extends Component {
     };
   }
 
+  onButtonPressed(type) {
+
+    if (this.state.showFormSignUp) {
+      // sign up
+    } else {
+      this.setState({showFormSignUp: true, form: type})
+    }
+  }
+
+  onLinkPressed(link) {
+    if (link === 'back' && this.state.showFormSignUp) {
+      this.setState({showFormSignUp: false})
+    } else {
+      // to do
+    }
+  }
+
   render() {
+    let SignFormInputs
+    let SignInButtons
+    const {showFormSignUp, form} = this.state
+    if (showFormSignUp) {
+      SignFormInputs = <SignForm form={form}/>
+    } else {
+      SignInButtons = (
+        <View>
+          <LoginButton
+            style={styles.button}
+            type="primary"
+            socialSignIn="fb"
+          />
+          <InshaButton
+            style={styles.button}
+            icon={<Icon style={styles.icon} name="mail-outline" size={22} color="#ffffff" />}
+            caption="Sign in with Email"
+            type="secondary"
+            onPress={() => this.onButtonPressed('signIn')}
+          />
+        </View>
+      )
+    }
+
+    let SignUpButton
+    if (!showFormSignUp) {
+      SignUpButton = <InshaButton
+                  style={[styles.button, styles.signUp]}
+                  type="bordered"
+                  caption="Sign Up"
+                  onPress={() => this.onButtonPressed('signUp')}
+                />
+    } else {
+      SignUpButton = <LoginButton
+                  style={styles.button}
+                  type="bordered"
+                  form={form}
+                  caption={form === 'signIn' ? 'Sign In' : 'Sign Up'}
+               />
+    }
+
+    let Links
+    if (!showFormSignUp) {
+      Links = <InshaTextLink
+        text="Forgot your password?"
+        onPress={this.onLinkPressed}
+        textStyle={styles.forgotPasswordText}
+      />
+    } else {
+      Links = (
+        <View style={styles.links}>
+          <InshaTextLink
+            text="Back to sign in"
+            onPress={() => this.onLinkPressed('back')}
+            textStyle={styles.forgotPasswordText}
+          />
+          <InshaTextLink
+            text="Forgot your password?"
+            onPress={() => this.onLinkPressed('forgotPassword')}
+            textStyle={styles.forgotPasswordText}
+          />
+        </View>
+      )
+    }
+
     return (
       <Image
         style={styles.container}
@@ -58,27 +151,9 @@ class LoginScreen extends Component {
           </Animated.Text>
         </View>
         <Animated.View style={[styles.section, this.fadeIn(1500)]}>
-          <View style={styles.fields}>
-            <InshaTextField
-              placeholder="Email Adress"
-              keyboardType="email-address"
-              style={styles.field}
-              onChangeText={(text) => {}}
-            />
-            <InshaTextField
-              placeholder="Password"
-              secureTextEntry
-              style={styles.field}
-              onChangeText={(text) => {}}
-            />
-          </View>
-          <LoginButton style={styles.button}/>
-          <LoginButton style={styles.button} socialSignIn="fb"/>
-          <InshaTextLink
-            text="Forgot your password?"
-            onPress={()=>{}}
-            textStyle={styles.forgotPasswordText}
-          />
+          {SignFormInputs || SignInButtons}
+          {SignUpButton}
+          {Links}
         </Animated.View>
       </Image>
     )
@@ -114,24 +189,30 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     backgroundColor: 'transparent',
   },
-  fields: {
-    marginBottom: 60,
-  },
-  field: {
-    width: 270,
-    marginBottom: 10
-  },
   buttons: {
 
   },
   button: {
-    marginBottom: 25
+    marginBottom: 15
+  },
+  signUp: {
+    alignSelf: 'center',
+    width: 270,
+  },
+  icon: {
+    marginRight: 0,
+    position: 'relative',
+    right: 20
+  },
+  links: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: 270
   },
   forgotPasswordText: {
     fontSize: Math.round(10 * scale),
     color: '#ffffff',
     backgroundColor: 'transparent',
-    textAlign: 'center',
   }
 })
 

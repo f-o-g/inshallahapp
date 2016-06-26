@@ -23,10 +23,14 @@ class InshaButton extends Component {
  };
 
  render() {
-   const caption = this.props.caption.toUpperCase()
+   const caption = this.props.caption
+
    let icon
-   if (this.props.icon) {
+   if (typeof this.props.icon === 'number') {
      icon = <Image source={this.props.icon} style={styles.icon} />
+   }
+   if (typeof this.props.icon === 'object') {
+     icon = this.props.icon
    }
 
    const type = this.props.type
@@ -34,7 +38,7 @@ class InshaButton extends Component {
    if (type === 'primary' || type === 'secondary' || !this.props.type) {
      const colors =
        type === 'primary' ? ['#6A6AD5', '#6F86D9'] :
-       type === 'secondary' ? ['', ''] :
+       type === 'secondary' ? ['#ff5a5f', '#ff6b6d'] :
        ['#6A6AD5', '#6F86D9']
 
      content = (
@@ -102,7 +106,7 @@ const styles = StyleSheet.create({
    },
    caption: {
      letterSpacing: 1,
-     fontSize: 12,
+     fontSize: 13,
      color: 'white',
    },
    primaryCaption: {

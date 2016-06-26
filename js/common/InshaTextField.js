@@ -25,7 +25,8 @@ function InshaTextField({style, textStyle, ...props}: Object): ReactElement {
 
 const styles = StyleSheet.create({
   textStyle: {
-    color: '#ffffff'
+    color: '#ffffff',
+    height: 50
   }
 })
 
