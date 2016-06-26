@@ -21,6 +21,8 @@
     "server": "babel-watch ./server/index.js"
   },
   "dependencies": {
+    "babel-plugin-transform-async-functions": "^6.8.0",
+    "babel-plugin-transform-async-to-generator": "^6.8.0",
     "babel-relay-plugin": "^0.9.1",
     "babel-watch": "^2.0.2",
     "express": "~4.13.4",
@@ -34,6 +36,7 @@
     "parse-server": "~2.2.6",
     "react": "15.1.0",
     "react-native": "0.28.0",
+    "react-native-fbsdk": "^0.2.1",
     "react-native-linear-gradient": "^1.5.12",
     "react-native-vector-icons": "^2.0.3",
     "react-redux": "^4.4.5",

@@ -2,5 +2,6 @@
   "passPerPreset": true,
   "presets": [
     "react-native"
-  ]
+  ],
+  "plugins": ["transform-async-to-generator"]
 }

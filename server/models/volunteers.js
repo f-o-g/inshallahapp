@@ -22,23 +22,23 @@ const InshaVolunteerType = new GraphQLObjectType({
     },
     firstName: {
       type: GraphQLString,
-      resolve: refugee => refugee.get("firstName"),
+      resolve: volunteer => volunteer.get("firstName"),
     },
     lastName: {
       type: GraphQLString,
-      resolve: refugee => refugee.get("lastName"),
+      resolve: volunteer => volunteer.get("lastName"),
     },
     city: {
       type: GraphQLString,
-      resolve: refugee => refugee.get("city"),
+      resolve: volunteer => volunteer.get("city"),
     },
     country: {
       type: GraphQLString,
-      resolve: refugee => refugee.get("country"),
+      resolve: volunteer => volunteer.get("country"),
     },
     phone: {
       type: GraphQLString,
-      resolve: refugee => refugee.get("phone"),
+      resolve: volunteer => volunteer.get("phone"),
     },
     skills: {
       type: new GraphQLList(Skill.SchemaType),
@@ -54,6 +54,10 @@ const InshaVolunteerType = new GraphQLObjectType({
       type: new GraphQLList(Refugee.SchemaType),
       description: 'Refugees',
       resolve: () => new Parse.Query(Refugee).find()
+    },
+    profileComplete: {
+      type: GraphQLString,
+      resolve: volunteer => volunteer.get("profileComplete"),
     }
   })
 })

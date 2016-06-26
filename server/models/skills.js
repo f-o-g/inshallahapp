@@ -20,6 +20,7 @@ const InshaSkillType = new GraphQLObjectType({
     },
     name: {
       type: GraphQLString,
+      resolve: skill => skill.get("name")
     },
   })
 })
@@ -33,6 +34,7 @@ const InshaNeedType = new GraphQLObjectType({
     },
     name: {
       type: GraphQLString,
+      resolve: need => need.get("name")
     },
   })
 })

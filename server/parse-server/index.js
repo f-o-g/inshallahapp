@@ -20,12 +20,12 @@ export default {
       '/dashboard',
       ParseDashboard({
         apps: [{
-          serverURL: settings.parseServerURL,
+          serverURL: `http://${settings.serverHost}:${settings.serverPort}/parse`,
           appId: settings.parseServerApplicationId,
           masterKey: settings.parseServerMasterKey,
           appName,
         }],
-        users: settings.parseServerDashboardUsers
+        // users: settings.parseServerDashboardUsers
       }, allowInsecureHTTPInParseDashboard)
     )
   }

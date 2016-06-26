@@ -54,6 +54,10 @@ const InshaRefugeeType = new GraphQLObjectType({
       type: new GraphQLList(Volunteer.SchemaType),
       description: 'Volunteers',
       resolve: () => new Parse.Query(Volunteer).find()
+    },
+    profileComplete: {
+      type: GraphQLString,
+      resolve: refugee => refugee.get("profileComplete"),
     }
   })
 })
