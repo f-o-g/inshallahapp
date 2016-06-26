@@ -63,7 +63,7 @@ ParseRequest.postData = function() {
       e.preventDefault()
     })
   })
-  XHR.POST('/parse/classes/Test')
+  XHR.POST('/parse/classes/Refugee')
 }
 
 ParseRequest.getData = function() {
@@ -79,7 +79,7 @@ ParseRequest.getData = function() {
       e.preventDefault()
     })
   })
-  XHR.GET('/parse/classes/Test')
+  XHR.GET('/parse/classes/Refugee')
 }
 
 ParseRequest.postCloudCodeData = function() {
@@ -131,7 +131,7 @@ XHR.setCallback = function(callback) {
 }
 
 XHR.POST = function(path, callback) {
-  var seed = {"first_name":"Abdulah","last_name":"Plott","city":"Barcelona"}
+  var seed = {"firstName":"Abdulah","lastName":"Plott","city":"Barcelona"}
   this.xhttp.open("POST", Config.getUrl() + path, true)
   this.xhttp.setRequestHeader("X-Parse-Application-Id", "inshallahapp")
   this.xhttp.setRequestHeader("Content-type", "application/json")

@@ -27,7 +27,7 @@ An app for Refugees and Volunteers to find and help each other.
 4. **Start Parse servers:**
 
   ```
-  $ npm start
+  $ npm run server
   ```
 
   Make sure everything works by visiting:
