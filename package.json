@@ -1,23 +1,44 @@
 {
-  "name": "inshallahapp",
+  "name": "Inshallahapp",
+  "description": "An app for Refugees and Volunteers to find and help each other.",
+  "contributors": [
+    {
+      "name": "Alberto Centelles",
+      "email": "centelles.alberto@gmail.com"
+    },
+    {
+      "name": "Norberto Sanchez",
+      "email": "norber145@gmail.com"
+    }
+  ],
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "babel-node ./server/server.js",
-    "lint": "eslint ."
+    "start": "babel-node ./server/index.js",
+    "lint": "eslint .",
+    "ios": "node node_modules/react-native/local-cli/cli.js run-ios",
+    "android": "node node_modules/react-native/local-cli/cli.js run-android",
+    "server": "babel-watch ./server/index.js"
   },
   "dependencies": {
+    "babel-relay-plugin": "^0.9.1",
+    "babel-watch": "^2.0.2",
     "express": "~4.13.4",
     "express-graphql": "~0.4.13",
+    "graphql": "^0.6.0",
     "graphql-relay": "~0.3.6",
+    "immutable": "^3.8.1",
+    "moment": "^2.13.0",
     "parse": "~1.8.2",
     "parse-dashboard": "~1.0.8",
     "parse-server": "~2.2.6",
     "react": "15.1.0",
     "react-native": "0.28.0",
+    "react-native-fbsdk": "^0.2.1",
     "react-native-linear-gradient": "^1.5.12",
     "react-native-vector-icons": "^2.0.3",
     "react-redux": "^4.4.5",
+    "react-relay": "^0.9.1",
     "redux": "^3.5.2",
     "redux-logger": "^2.6.1",
     "redux-persist": "^3.2.2",
@@ -25,6 +46,9 @@
   },
   "devDependencies": {
     "babel-eslint": "^6.1.0",
+    "babel-plugin-transform-async-functions": "^6.8.0",
+    "babel-plugin-transform-async-to-generator": "^6.8.0",
+    "babel-preset-react-native": "^1.9.0",
     "eslint": "^2.13.1",
     "eslint-plugin-react": "^5.2.2",
     "remote-redux-devtools": "^0.3.3"

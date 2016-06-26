@@ -72,9 +72,10 @@ class LoginScreen extends Component {
   }
 
   render() {
+    const {showFormSignUp, form} = this.state
+
     let SignFormInputs
     let SignInButtons
-    const {showFormSignUp, form} = this.state
     if (showFormSignUp) {
       SignFormInputs = <SignForm form={form}/>
     } else {
@@ -179,8 +180,8 @@ const styles = StyleSheet.create({
   },
   logo: {
     // Remove when get proper image size
-    width: 160,
-    height: 160
+    width: 130,
+    height: 130
   },
   h1: {
     marginTop: 30,

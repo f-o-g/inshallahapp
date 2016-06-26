@@ -27,7 +27,7 @@ An app for Refugees and Volunteers to find and help each other.
 4. **Start Parse servers:**
 
   ```
-  $ npm start
+  $ npm run server
   ```
 
   Make sure everything works by visiting:
@@ -50,3 +50,9 @@ An app for Refugees and Volunteers to find and help each other.
   ```
 
   Alternatively, you can use Android studio to run android
+
+If you want to load some data to test, you can run this:
+```
+$ cd scripts
+$ babel-node --plugins transform-async-functions import-data.js
+```
