@@ -2,6 +2,14 @@
 
 An app for Refugees and Volunteers to find and help each other.
 
+## Features
+
+- React Native
+- Relay
+- Graphql
+- Parse
+- Redux
+
 ## Setup
 
 1. **Clone the repo**
